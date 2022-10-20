@@ -1,0 +1,58 @@
+﻿@model IEnumerable<HumanResourceManagementSystem.Models.Attendance>
+
+@{
+    ViewBag.Title = "AttendanceInformation";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+<link href="~/css/employeeindex.css" rel="stylesheet" />
+<div class="main-content p-5">
+    <div class="container-fluid content-top-gap">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Employee/Dashboard" style="color:darkblue">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Attendances-List</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="info">
+        <h2>Attendances Information List</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee.username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WorkDetail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkDetail)
+                    </td>
+
+                    <td style="padding: 25px 20px; ">
+                        <i class="Statustrue"> @Html.DisplayFor(modelItem => item.Status)</i>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

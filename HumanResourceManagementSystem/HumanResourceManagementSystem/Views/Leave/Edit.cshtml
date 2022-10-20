@@ -1,0 +1,70 @@
+﻿@model HumanResourceManagementSystem.Models.Leave
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/css/editform.css" rel="stylesheet" />
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Leave/Index" style="color:darkblue">Leaves</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit-Leave</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="form-block">
+        <h2>Edit Leave Information</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.LeaveId)
+            <div class="container">
+                <div class="contacts12-main">
+                    <div class="main-input ">
+                        <div>
+                            @Html.LabelFor(model => model.EmployeeId, "EmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "contact-input", @required = "Required" })
+                            @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "contact-input", @required = "Required" } })
+                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "contact-input", @required = "Required", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="font-size: 14px medium; font-weight: 600; ">Cancel  : </label>
+                        @Html.RadioButtonFor(m => m.Status, "Cancel")&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label style="font-size: 14px medium; font-weight: 600; ">Pending :</label>
+                        @Html.RadioButtonFor(m => m.Status, "Pending" @*new { @checked = "true" }*@)&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label style="font-size:14px medium; font-weight:600;">Approved :</label>
+                        @Html.RadioButtonFor(m => m.Status, "Approved")
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "contact-textarea", @Required = "Required" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                            <i class="fa fa-arrow-circle-o-left">&nbsp; @Html.ActionLink("Back to List", "Index")</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Validation {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

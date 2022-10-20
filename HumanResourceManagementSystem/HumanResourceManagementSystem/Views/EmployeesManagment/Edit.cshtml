@@ -1,0 +1,128 @@
+﻿@model HumanResourceManagementSystem.Models.Employee
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/css/editform.css" rel="stylesheet" />
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/EmployeesManagment/Index" style="color:darkblue">Employees</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit-Employee</li>
+            </ol>
+        </nav>
+
+    </div>
+    <div class="form-block">
+        <h2>Edit Employee Information</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.EmployeeId)
+            <div class="container">
+                <div class="contacts12-main">
+                    <div class="main-input ">
+                        <div>
+                            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "contact-input", @required = "required", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "contact-input", data_val = "true", data_val_required = "Frist Name in blanck", data_val_regex_pattern = "^[a-zA-Z ]{2,30}$", data_val_regex = "Please Enter Valid Name", data_val_minlength_min = "3", data_val_minlength = "Frist Name is Too Small", data_val_maxlength_max = "20", data_val_maxlength = "Frist Name is Too Large" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "contact-input", data_val = "true", data_val_required = "Last Name is blanck", data_val_regex_pattern = "^[a-zA-Z ]{2,30}$", data_val_regex = "Please Enter Valid Name", data_val_minlength_min = "3", data_val_minlength = "Last Name is Too Small", data_val_maxlength_max = "20", data_val_maxlength = "Last Name is Too Large" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="main-input">
+                        <div>
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "contact-input", data_val = "true", data_val_required = "Password is blanck", data_val_regex_pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$", data_val_regex = " Min 8, Max 12,Unique Chars,Digit,Lower Case,Upper Case", data_val_minlength_min = "8", data_val_minlength = "Pasword is Too Small", data_val_maxlength_max = "12", data_val_maxlength = "Password is Too Large" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(model => model.DateOFBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.DateOFBirth, new { htmlAttributes = new { @class = "contact-input", @required = "required"  } })
+                            @Html.ValidationMessageFor(model => model.DateOFBirth, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new{  @class = "contact-input",@required = "required",
+                           data_val = "true",
+                           data_val_required = "Password is blanck",
+                           data_val_regex_pattern = "^(+92|0|92)[0-9]{10}$",
+                           data_val_regex = "Please Enter Valid Mobile",
+                           data_val_minlength_min = "3",
+                           data_val_minlength = "Mobile is Too Small",
+                           data_val_maxlength_max = "12",
+                           data_val_maxlength = "Mobile is Too Large"
+                           }
+                            })
+                            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="main-input2">
+
+                        <div>
+                            @Html.LabelFor(model => model.EmpSalary, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.EmpSalary, new { htmlAttributes = new { @class = "contact-input", @required = "required" } })
+                            @Html.ValidationMessageFor(model => model.EmpSalary, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(model => model.DepartmentId, "DepartmentId", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownList("DepartmentId", null, htmlAttributes: new { @class = "contact-input", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            <label style="font-size:14px medium; font-weight:600;">Male  : </label>
+                            @Html.RadioButtonFor(m => m.Gender, "Male")&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label style="font-size:14px medium; font-weight:600;">Female :</label>
+                            @Html.RadioButtonFor(m => m.Gender, "Female")
+                        </div>
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div>
+                            @Html.EditorFor(model => model.Address, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "contact-textarea",
+                                    @required = "required",
+                                    data_val_minlength_min = "20",
+                           data_val_minlength = "Work Details is Too Small",
+                           data_val_maxlength_max = "100",
+                           data_val_maxlength = "Work Details is Too Large"
+                       }
+                            })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                            <i class="fa fa-arrow-circle-o-left">&nbsp; @Html.ActionLink("Back to List", "Index")</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/js/Show.js"></script>
+@section Validation {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

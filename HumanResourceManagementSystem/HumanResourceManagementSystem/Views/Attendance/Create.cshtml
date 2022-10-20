@@ -1,0 +1,142 @@
+﻿@model HumanResourceManagementSystem.Models.Attendance
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/css/editform.css" rel="stylesheet" />
+
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Attendance/Index" style="color:darkblue">Attendances</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Adding-Attendance</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="form-block">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h2>Adding Attendance</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <section>
+                <div class="container">
+                    <div class="contacts12-main">
+                        <!-- .............. form................... -->
+                        <form action="" method="post" class="form">
+                            <div class="main-input2">
+                                <div>
+                                    @Html.LabelFor(model => model.EmployeeId, "User ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.DropDownList("EmployeeId", null, "-- Please select --", new
+                                    {
+                                        @class = "contact-input",
+                                        @required = "required",
+                                        @id = "EmployeeId",
+                                        
+                                    })
+                                    
+                                    @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div>
+                                    @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="Date" name="Date" id="today" placeholder=" " class="contact-input" readonly
+                                           required />
+                                    
+                                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                            <div>
+                                <label style="font-size:14px medium; font-weight:600;">Present  : </label>
+                                @Html.RadioButtonFor(m => m.Status, "Present", new { @class = "text-danger", @id = "showr", @onclick = "click()" })&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                <label style="font-size:14px medium; font-weight:600;">Absent :</label>
+                                @Html.RadioButtonFor(m => m.Status, "Absent", new { @class = "text-danger", @id = "hidr", @onclick = "click()" })
+
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div id="diver" >
+                                @Html.LabelFor(model => model.WorkDetail, htmlAttributes: new { @class = "control-label col-md-2", @id = "Work" })
+                                <textarea class="contact-textarea" name="WorkDetail" id="WorkDetail"
+                                          placeholder="Type Work Details here" data-val-regex-pattern="^[#.0-9a-zA-Z\s,-]+$" data-val-regex="Please Enter Valid Details" data-val-minlength-min="20" data-val-minlength="Work Details is Too Small"
+                                          data-val-maxlength-max="225" data-val-maxlength="Work Details is Too Large" required></textarea>
+                                @Html.ValidationMessageFor(model => model.WorkDetail, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Add Attendance" class="btn btn-default" />
+                                    <i class="fa fa-arrow-circle-o-left">&nbsp;@Html.ActionLink("Back to List", "Index")</i>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- //...................... form................ -->
+                    </div>
+                </div>
+            </section>
+        }
+        @if (ViewBag.Massage!=null)
+        {
+            <script type="text/javascript">
+                window.onload = function () {
+                    alert("@ViewBag.Massage")
+                };
+            </script>
+        }
+    </div>
+</div>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>*@
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+    document.getElementById('today').value = new Date().toISOString().slice(0, 10);
+</script>
+
+
+<!--........... Persent ..........-->
+
+<!--........... Absent ..........-->
+
+<script>
+    $("#showr").click(function () {
+        $("#diver").first().show("slow", function showNext() {
+            $(this).next("#diver").show(10000);
+        });
+    });
+
+    $("#hidr").click(function () {
+        $("#diver").hide(1000);
+    });
+</script>
+@*<script>
+
+    $('#Nowork').click(function () {
+        if ($(this).is(':checked')) {
+            $('#WorkDetail').hide();
+            $('#Work').hide();
+        }
+        else {
+            $('#Work').show();
+        }
+    });
+</script>*@
+@*<script>
+
+    $('#Persent').click(function () {
+        if ($(this).is(':checked')) {
+            $('#WorkDetail').show();
+            $('#Work').show();
+        }
+
+    });
+</script>*@
+@section Validation {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

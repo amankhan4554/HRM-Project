@@ -1,0 +1,150 @@
+﻿@model HumanResourceManagementSystem.Models.Notice
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/css/editform.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Notice/Index" style="color:darkblue">Notices</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Adding-Notice</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="form-block">
+        <h2>Adding Notice</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <section>
+                <div class="container">
+                    <div class="contacts12-main">
+                        <!-- .............Notice form................ -->
+                        <form action="" method="post" class="form">
+                            <div class="main-input">
+                                <div>
+                                    @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="text" name="Subject" id="Subject" placeholder=" Event Subject" class="contact-input"
+                                           data-val="true" data-val-required="Department Name is Blank" data-val-regex-pattern="^[a-zA-Z ]{5,30}$" data-val-regex="Please Enter Valid Department Name" data-val-minlength-min="5"
+                                           data-val-minlength="Department Name is Too Small" data-val-maxlength-max="30" data-val-maxlength="Department Name is Too Large" onchange="UserCheck()" />
+                                    <p id="Status"></p>
+                                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="input-icon position-relative">
+                                    @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="date" name="Date" id="today" placeholder=""
+                                           class="contact-input" required />
+                                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.Time, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="Time" name="Time" id="currentTime" placeholder="" class="contact-input"
+                                           required />
+                                    <script>
+                                        var today = new Date();
+                                        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                                        document.getElementById("currentTime").value = time;
+                                    </script>
+                                    @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <textarea class="contact-textarea" name="Description" id="Description"
+                                      placeholder="Type Event Description here" data-val="true" data-val-required="Department Description is Blank" data-val-regex-pattern="^[#.0-9a-zA-Z\s,-]+$"
+                                      data-val-regex="Please Enter Valid Department Description" data-val-minlength-min="20" data-val-minlength="Department Description is Too Small"
+                                      data-val-maxlength-max="225" data-val-maxlength="Department Description is Too Large"></textarea>
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Add Event" class="btn btn-default" />
+                                    <i class="fa fa-arrow-circle-o-left">&nbsp;@Html.ActionLink("Back to List", "Index")</i>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- //............. form...................... -->
+                    </div>
+                </div>
+            </section>
+        }
+    </div>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/redmond/jquery-ui.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
+@*<script>
+    $(document).ready(function () {
+        var select = function () {
+            var d1 = $('#datepicker3').datepicker('getDate');
+            var d2 = $('#datepicker4').datepicker('getDate');
+            var diff = 0;
+            if (d1 && d2) {
+                diff = Math.floor((d2.getTime() - d1.getTime()) / 86400000); // ms per day
+            }
+            $('#calculated').val(diff);
+        }
+
+
+        $("#datepicker3").datepicker({
+            showMonthAfterYear: true,
+
+            numberOfMonths: 2,
+            minDate: 0,
+            onSelect: function (selected) {
+                $("#datepicker4").datepicker("option", "minDate", selected);
+                select();
+            }
+        });
+        $("#datepicker4").datepicker({
+            showMonthAfterYear: true,
+            numberOfMonths: 2,
+            onSelect: function (selected) { //you have a syntax issue here the select method has to be called inside the default handler
+                $("#datepicker3").datepicker("option", "maxDate", selected)
+                select();
+            }
+        });
+    });
+</script>*@
+<!-- //............. Already Exist...................... -->
+<script>
+            function UserCheck() {
+                $("#Status").html("Checking.........!");
+                $.post("@Url.Action("exitInput", "Notice")",
+                    {
+                        userdata: $("#Subject").val()
+                    },
+                    function (data) {
+
+                        if (data == 0) {
+                            $("#Status").html('<font color="Green">Subject Available......!</font>');
+                            $("#Subject").css("border-color", "Green");
+                        }
+                        else {
+                            $("#Status").html('<font color="Red"> That Subject already taken......!</font>');
+                            $("#Subject").css("border-color", "red");
+                        }
+                    });
+            }
+</script>
+<script>
+    document.getElementById('today').value = new Date().toISOString().slice(0, 10);
+</script>
+
+@*<script src="~/Scripts/jquery.ui.datepicker.js"></script>
+    <script src="~/Scripts/jquery.ui.datepicker.min.js"></script>
+    <script language="javascript">
+        $(document).ready(function () {
+            $('today').datepicker({
+                format: "yyyy/mm/dd",
+                minDate: '0d'
+            });
+        });
+    </script>*@
+@section Validation {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

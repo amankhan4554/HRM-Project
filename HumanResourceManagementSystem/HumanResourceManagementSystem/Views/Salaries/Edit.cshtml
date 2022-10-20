@@ -1,0 +1,73 @@
+﻿@model HumanResourceManagementSystem.Models.Salary
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/css/editform.css" rel="stylesheet" />
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Salaries/Index" style="color:darkblue">Salaries</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit-Salary</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <h2>Edit Salary Information</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.SalaryId)
+            <div class="container">
+                <div class="contacts12-main">
+                    <div class="main-input2 ">
+
+                        <div>
+                            @Html.LabelFor(model => model.EmployeeId, "EmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "contact-input", @required = "Required" })
+                            @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "contact-input", @required = "Required", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="main-input2">
+                        <div>
+                            @Html.LabelFor(model => model.TotalSalary, "Total Salary", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownList("TotalSalary", null, htmlAttributes: new { @class = "contact-input", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.TotalSalary, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(model => model.RemaningSalary, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.RemaningSalary, new { htmlAttributes = new { @class = "contact-input" } })
+                            @Html.ValidationMessageFor(model => model.RemaningSalary, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Update" class="btn btn-default" />
+                            <i class="fa fa-arrow-circle-o-left">&nbsp; @Html.ActionLink("Back to List", "Index")</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+<script>
+    document.getElementById('today').value = new Date().toISOString().slice(0, 10);
+</script>
+@section Validation {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

@@ -1,0 +1,118 @@
+﻿@model IEnumerable<HumanResourceManagementSystem.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/css/employeeindex.css" rel="stylesheet" />
+
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Admin/Dashboard" style="color:darkblue">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Employees-List</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="info">
+        <h2>Employees Information List</h2>
+        <div style="height: auto; overflow-y: scroll">
+
+
+            <a href="~/EmployeesManagment/List"  style="padding: 10px; color: blue;  " class="report">Generate Report<i class="fa fa-arrow-right"></i></a>
+
+
+
+            <table class="table" id="Employeedata">
+                <tr>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Password
+                    </th>
+
+                    <th>
+                        Date OF Birth
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Employee Salary
+                    </th>
+                    <th>
+                        Mobile
+                    </th>
+                    <th>
+                        Department Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Password)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOFBirth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmpSalary)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mobile)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink(".", "Edit", new { id = item.EmployeeId }, new { @class = " fa fa-pencil" })
+                            @Html.ActionLink(".", "Details", new { id = item.EmployeeId }, new { @class = " fa fa-eye" })
+                            @Html.ActionLink(".", "Delete", new { id = item.EmployeeId }, new { @class = " fa fa-trash" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+            <a href="~/EmployeesManagment/List"  style="padding: 10px; color: blue;  " class="report">Generate Report<i class="fa fa-arrow-right"></i></a>
+        </div>
+    </div>
+</div>
+
+
+@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/js/Show.js"></script>*@

@@ -1,0 +1,60 @@
+﻿@model HumanResourceManagementSystem.Models.Salary
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/css/detailemployee.css" rel="stylesheet" />
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Salaries/Index" style="color:darkblue">Salaries</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail-Salary</li>
+            </ol>
+        </nav>
+
+    </div>
+
+    <div class="dl-horizontal">
+        <h2>Salary Details</h2>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee.username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee.username)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee.EmpSalary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee.EmpSalary)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RemaningSalary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RemaningSalary)
+            </dd>
+        </dl>
+        <p class="btn-default">
+            <i class="fa fa-pencil-square-o"> &nbsp;@Html.ActionLink("Edit", "Edit", new { id = Model.SalaryId })</i>
+            <i class="fa fa-arrow-circle-o-left">&nbsp; @Html.ActionLink("Back to List", "Index")</i>
+        </p>
+    </div>
+</div>
+

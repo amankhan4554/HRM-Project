@@ -1,0 +1,125 @@
+﻿@model HumanResourceManagementSystem.Models.Leave
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+<link href="~/css/editform.css" rel="stylesheet" />
+<style>
+    .status {
+        display: none;
+    }
+</style>
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Leave/Index" style="color:darkblue">Leaves</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Adding-Leave</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="form-block">
+        <h2>Adding Leave</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <section class="contact-form">
+                <div class="container">
+                    <div class="contacts12-main">
+                        <!-- ........... form ..................-->
+                        <form action="" method="post" class="form">
+                            <div class="main-input">
+                                <div>
+                                    @Html.LabelFor(model => model.EmployeeId, "EmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.DropDownList("EmployeeId", null, "-- Please select --", new
+                                    {
+                                        @class = "contact-input",
+                                        @required = "required",
+                                        @id = "EmployeeId",
+                                        @onchange = "UserCheck()"
+                                    })
+                                    <p id="Status"></p>
+                                    @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="text" name="Subject" id="Subject" placeholder=" Leave Subject" class="contact-input"
+                                           data-val="true" data-val-required="Department Name is Blank" data-val-regex-pattern="^[a-zA-Z ]{5,30}$" data-val-regex="Please Enter Valid Department Name" data-val-minlength-min="5"
+                                           data-val-minlength="Department Name is Too Small" data-val-maxlength-max="30" data-val-maxlength="Department Name is Too Large" />
+                                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="input-icon position-relative">
+                                    @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="date" name="Date" id="today" placeholder="" readonly
+                                           class="contact-input" required />
+                                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="status">
+                                <label style="font-size: 14px medium; font-weight: 600; ">Cancel  : </label>
+                                @Html.RadioButtonFor(m => m.Status, "Cancel", new { @readonly = "readonly" })&nbsp;&nbsp;&nbsp;&nbsp;
+                                <label style="font-size: 14px medium; font-weight: 600;">Pending :</label>
+                                @Html.RadioButtonFor(m => m.Status, "Pending", new { @checked = "true", @readonly = "readonly" })&nbsp;&nbsp;&nbsp;&nbsp;
+                                <label style="font-size:14px medium; font-weight:600;">Approved :</label>
+                                @Html.RadioButtonFor(m => m.Status, "Approved", new { @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <textarea class="contact-textarea" name="Description" id="Description"
+                                      placeholder="Type Event Description here" data-val="true" data-val-required="Department Description is Blank" data-val-regex-pattern="^[#.0-9a-zA-Z\s,-]+$"
+                                      data-val-regex="Please Enter Valid Department Description" data-val-minlength-min="20" data-val-minlength="Department Description is Too Small"
+                                      data-val-maxlength-max="225" data-val-maxlength="Department Description is Too Large"></textarea>
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Aply for Leave" class="btn btn-default" />
+                                    @*<i class="fa fa-arrow-circle-o-left">&nbsp;@Html.ActionLink("Back to Admin", "Index")</i>*@
+                                    <i class="fa fa-arrow-circle-o-left">&nbsp;@Html.ActionLink("Click to Leave List", "LeaveInformation", "Employee")</i>
+                                </div>
+                                <label id="leaveerror" type="hidden" style="color:red " contextmenu=""> </label>
+                            </div>
+                        </form>
+                        <!--      --------------//................form.................. -->
+                    </div>
+                </div>
+            </section>
+        }
+        @if (ViewBag.Massage != null)
+        {
+            <script type="text/javascript">
+                window.onload = function () {
+                    alert("@ViewBag.Massage")
+                };
+            </script>
+        }
+    </div>
+</div>
+@*<script>
+       function UserCheck() {
+           $("#Status").html("Checking.........!");
+           $.post("@Url.Action("existLeave", "Leave")",
+               {
+                   userdata: $("#EmployeeId").val()
+               },
+               function (data) {
+                   if (data == 0) {
+                       $("#Status").html('<font color="Green">User ID Available......!</font>');
+                       $("#EmployeeId").css("border-color", "Green");
+                   }
+                   else {
+                       $("#Status").html('<font color="Red"> That User ID already Add......!</font>');
+                       $("#EmployeeId").css("border-color", "red");
+                   }
+               });
+        }
+</script>*@
+<script>
+    document.getElementById('today').value = new Date().toISOString().slice(0, 10);
+</script>
+
+@section Validation {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

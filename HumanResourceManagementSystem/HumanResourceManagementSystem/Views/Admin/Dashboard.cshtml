@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    var Admin = "";
+
+    if (TempData.ContainsKey("Admin"))
+    {
+        Admin = TempData["Admin"] as string;
+    }
+
+
+}
+<div class="main-content p-3">
+
+    <!-- content -->
+    <div class="container-fluid content-top-gap">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Admin/Dashboard">Admin</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            </ol>
+        </nav>
+        <div class="welcome-msg pt-3 pb-4">
+            <h1>Welcome to <span class="text-primary">@Admin </span></h1>
+            <p>You can manage this with Required Changes,Thanks </p>
+        </div>
+    </div>
+
+    <!-- statistics data -->
+    <div class="statistics">
+        <div class="row">
+            <div class="col-xl-6 pr-xl-2">
+                <div class="row">
+                    <div class="col-sm-6 pr-sm-2 statistics-grid">
+                        <a href="~/EmployeesManagment/Index"> 
+                             <div class="card card_border border-primary-top p-4">
+                               <i class="lnr lnr-users"> </i>
+                              <h3 class="text-primary number"> @ViewBag.AllEmployee </h3>
+                                 <p class="stat-text">Total Employee</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 pl-sm-2 statistics-grid">
+                        <a href="~/Department/Index">
+                            <div class="card card_border border-primary-top p-4">
+                                <i class="lnr lnr-apartment"> </i>
+                                <h3 class="text-success number">@ViewBag.AllDepartment</h3>
+                                <p class="stat-text">Total Departments</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 pl-xl-2">
+                <div class="row">
+                    <div class="col-sm-6 pr-sm-2 statistics-grid">
+                       
+                        <a href="~/Event/Index">
+                            <div class="card card_border border-primary-top p-4">
+                                <i class="lnr lnr-calendar-full"> </i>
+                                <h3 class="text-secondary number">@ViewBag.AllEvent</h3>
+                                <p class="stat-text">Total Events</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 pl-sm-2 statistics-grid">
+                        <a href="~/Notice/Index">
+                            <div class="card card_border border-primary-top p-4">
+                                <i class="lnr lnr-alarm"> </i>
+                                <h3 class="text-danger number">@ViewBag.AllNotice</h3>
+                                <p class="stat-text">Total Notice</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

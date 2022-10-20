@@ -1,0 +1,323 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Human Resourse Management</title>
+    <!-- Favicons -->
+    <link href="~/images/AlfaOrigen.jpg" rel="icon">
+    <link href="~/images/AlfaOrigen.jpg" rel="apple-touch-icon">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/css/style-starter.css">
+
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
+
+   
+
+</head>
+
+<body class="sidebar-menu-collapsed">
+    <div class="se-pre-con"></div>
+    <section>
+        @{
+            var Admin = "";
+            if (TempData.ContainsKey("Admin"))
+            {
+                Admin = TempData["Admin"] as string;
+            }
+        }
+
+
+
+        <!-- sidebar menu start -->
+        <div class="sidebar-menu sticky-sidebar-menu">
+
+            <!-- logo start -->
+            <div class="logo">
+                <h1><a href="~/Admin/Dashboard">HRMS</a></h1>
+            </div>
+            <!-- //image logo -->
+
+            <div class="logo-icon text-center">
+                <a href="~/Admin/Dashboard" title="logo"><img src="~/images/logo.png" alt="logo-icon"> </a>
+            </div>
+            <!-- //logo end -->
+
+            <div class="sidebar-menu-inner active">
+
+                <!-- sidebar nav start -->
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li class="active">
+                        <a href="~/Admin/Dashboard"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
+                    </li>
+                    <li class="menu-lis">
+                        <a href="#">
+                            <i class="fa fa-building-o"></i>
+                            <span>Departments<i class="lnr lnr-chevron-right"></i></span>
+                        </a>
+                        <ul class="sub-menu-list">
+                            <li><a href="~/Department/Create">Add Department</a> </li>
+                            <li><a href="~/Department/Index">Departments List</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-lis">
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span>Employees<i class="lnr lnr-chevron-right"></i></span>
+                        </a>
+                        <ul class="sub-menu-list">
+                            <li><a href="~/EmployeesManagment/Create">Add Employee</a> </li>
+                            <li><a href="~/EmployeesManagment/Index">Employees List</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-list">
+                        <a href="#">
+                            <i class="fa fa-calendar-plus-o"></i>
+                            <span>Attendances<i class="lnr lnr-chevron-right"></i></span>
+                        </a>
+                        <ul class="sub-menu-list">
+                            <li><a href="~/Attendance/Create">Add Attendance</a></li>
+                            <li><a href="~/Attendance/Index">Attendance List</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-list">
+                        <a href="#">
+                            <i class="fa fa-calendar-minus-o"></i>
+                            <span>Leaves<i class="lnr lnr-chevron-right"></i></span>
+                        </a>
+                        <ul class="sub-menu-list">
+                            <li><a href="~/Leave/Index">Leave List</a> </li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href="#">
+                            <i class="fa fa-dollar"></i>
+                            <span>Salaries<i class="lnr lnr-chevron-right"></i></span>
+                        </a>
+                        <ul class="sub-menu-list">
+                            <li><a href="~/Salaries/Create">Add Salary</a></li>
+                            <li><a href="~/Salaries/Index">Salaries List</a> </li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href="#">
+                            <i class="fa fa-calendar-check-o"></i>
+                            <span>Events<i class="lnr lnr-chevron-right"></i></span>
+                        </a>
+                        <ul class="sub-menu-list">
+                            <li><a href="~/Event/Create">Add Event</a></li>
+                            <li><a href="~/Event/Index">Event List</a> </li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href="#">
+                            <i class="fa fa-bell-o"></i>
+                            <span>Notice<i class="lnr lnr-chevron-right"></i></span>
+                        </a>
+                        <ul class="sub-menu-list">
+                            <li><a href="~/Notice/Create">Add Notice</a></li>
+                            <li><a href="~/Notice/Index">Notice List</a> </li>
+                        </ul>
+                    </li>
+                    <li><a href="~/Account/Logout"><i class="fa fa-sign-out"></i> <span>Log Out</span></a></li>
+                </ul>
+                <!-- //sidebar nav end -->
+                <!-- toggle button start -->
+                <a class="toggle-btn">
+                    <i class="fa fa-angle-double-left menu-collapsed__left"><span>Collapse Sidebar</span></i>
+                    <i class="fa fa-angle-double-right menu-collapsed__right"></i>
+                </a>
+                <!-- //toggle button end -->
+            </div>
+        </div>
+        <!-- //sidebar menu end -->
+        <!-- header-starts -->
+        <div class="header sticky-header">
+
+            <!-- notification menu start -->
+
+
+
+            <div class="menu-right">
+                <div class="navbar user-panel-top">
+
+
+                    @*Display real time*@
+
+
+                    <h3 style="font-size:22px; font-weight:700;text-align:center;width:auto;">  <span id="time"> </span></h3>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <script src="~/js/Time.js"></script>
+
+                    <div class="search-box">
+                        <form action="#" method="get">
+
+                            <input class="search-input" placeholder="Search Here..." type="search" id="search">
+                            <button class="search-submit" value=""><span class="fa fa-search"></span></button>
+                        </form>
+                    </div>
+                    <div class="user-dropdown-details d-flex">
+                        <div class="profile_details_left">
+                            <ul class="nofitications-dropdown">
+                                @*<li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa fa-calendar-check-o"></i><span class="badge blue">@ViewBag.AllEvent</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <div class="notification_bottom">
+                                                    <a href="~/Event/Index" class="bg-primary">See all Events</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>*@
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-bell-o"></i><span class="badge blue">@ViewBag.AllLeave</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+
+                                        <li>
+                                            <div class="notification_bottom">
+                                                <a href="~/Leave/Index" class="bg-primary">See all Leave</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="profile_details">
+                            <ul>
+                                <li class="dropdown profile_details_drop">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" aria-haspopup="true"
+                                       aria-expanded="false">
+                                        <div class="profile_img">
+                                            <img src="~/images/profileimg.png" class="rounded-circle" alt="" />
+                                            <div class="user-active">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu drp-mnu" aria-labelledby="dropdownMenu3">
+                                        <li class="user-info">
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <h5 class="user-name" style="color:white">
+                                                    Dear-@User.Identity.Name
+                                                </h5>
+                                            }
+                                            <span class="status ml-2">Available</span>
+                                        </li>
+                                        <li class="logout"> <a href="~/Account/Logout"><i class="fa fa-power-off"></i> Logout</a> </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--notification menu end -->
+        </div>
+        <!-- //header-ends -->
+    </section>
+
+
+    <button onclick="topFunction()" id="movetop" class="bg-primary" title="Go to top">
+        <span class="fa fa-angle-up"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- /move top -->
+    @RenderBody()
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/jquery-1.10.2.min.js"></script>
+    
+
+     @*chart js*@ 
+  @*<script src="~/js/Chart.min.js"></script>*@
+    <script src="~/js/utils.js"></script>
+     @*//chart js 
+     //Different scripts of charts.  Ex.Barchart, Linechart*@ 
+    <!--<script src="~/js/bar.js"></script>
+    <script src="~/js/linechart.js"></script>-->
+     @*//Different scripts of charts.  Ex.Barchart, Linechart*@
+
+
+    <script src="~/js/jquery.nicescroll.js"></script>
+    <script src="~/js/scripts.js"></script>
+
+    <!-- close script -->
+    <script>
+        var closebtns = document.getElementsByClassName("close-grid");
+        var i;
+
+        for (i = 0; i < closebtns.length; i++) {
+            closebtns[i].addEventListener("click", function () {
+                this.parentElement.style.display = 'none';
+            });
+        }
+    </script>
+    <!-- //close script -->
+    <!-- disable body scroll when navbar is in active -->
+    <script>
+        $(function () {
+            $('.sidebar-menu-collapsed').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- disable body scroll when navbar is in active -->
+    <!-- loading-gif Js -->
+    <script src="~/js/modernizr.js"></script>
+    <script>
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
+    </script>
+
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <!--// loading-gif Js -->
+    <!-- Bootstrap Core JavaScript -->
+    <div class="container body-content">
+        <hr />
+        <footer>
+            <p style="text-align:center" class="mb-3">
+                &copy 2022.All Rights Reserved | Design by AmanUllah
+            </p>
+        </footer>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    
+    @RenderSection("Validation", false)
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

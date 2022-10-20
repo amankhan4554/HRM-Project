@@ -1,0 +1,112 @@
+﻿
+@model IEnumerable<HumanResourceManagementSystem.Models.Salary>
+@{
+    ViewBag.Title = "List";
+    Layout = null;
+
+}
+
+<link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<script src="~/js/jsprint/jquery-3.5.1.js"></script>
+<script src="~/js/jsprint/jquery.dataTables.min.js"></script>
+<script src="~/js/jsprint/dataTables.buttons.min.js"></script>
+<script src="~/js/jsprint/jszip.min.js"></script>
+<script src="~/js/jsprint/pdfmake.min.js"></script>
+<script src="~/js/jsprint/vfs_fonts.js"></script>
+<script src="~/js/jsprint/buttons.html5.min.js"></script>
+<script src="~/js/jsprint/buttons.print.min.js"></script>
+<div class="display-2">
+    <h2 style=" font-size: 50px; text-align: center;">Employee Salary List </h2>
+    <table id="SalaryTable" style="width:95%" class="table table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee.username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee.EmpSalary)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RemaningSalary)
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.EmpSalary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RemaningSalary)
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#SalaryTable').DataTable({
+                pageLength: 10,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        text: '<i class="fa fa-files-o"></i> Copy',
+                        title: 'Alfa Employee Salary List'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"></i> Excel',
+                        filename: function () {
+                            var d = new Date();
+                            var n = d.getTime();
+                            return 'AlfaOrigin' + n;
+                        },
+                        title: 'Alfa Employee Salary List'
+                    },
+
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="fa fa-file-pdf-o"></i> PDF',
+                        filename: function () {
+                            var d = new Date();
+                            var n = d.getTime();
+                            return 'AlfaOrigin' + n;
+                        },
+                        title: 'Alfa Employee Salary List'
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i> Print',
+                        filename: function () {
+                            var d = new Date();
+                            var n = d.getTime();
+                            return 'AlfaOrigin' + n;
+                        },
+                        title: 'Alfa Employee Salary List'
+                    },
+                ]
+            });
+        });
+    </script>
+</div>

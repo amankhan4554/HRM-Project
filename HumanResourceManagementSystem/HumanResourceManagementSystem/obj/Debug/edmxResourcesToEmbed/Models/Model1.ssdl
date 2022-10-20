@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HumanResourceManagementSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="HumanResourceManagementSystemModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="HumanResourceManagementSystemModel.Store.Admin" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Attendance" EntityType="HumanResourceManagementSystemModel.Store.Attendance" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Department" EntityType="HumanResourceManagementSystemModel.Store.Department" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employee" EntityType="HumanResourceManagementSystemModel.Store.Employee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Event" EntityType="HumanResourceManagementSystemModel.Store.Event" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Leave" EntityType="HumanResourceManagementSystemModel.Store.Leave" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notice" EntityType="HumanResourceManagementSystemModel.Store.Notice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Salary" EntityType="HumanResourceManagementSystemModel.Store.Salary" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Attendance_Employee" Association="HumanResourceManagementSystemModel.Store.FK_Attendance_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Attendance" EntitySet="Attendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentEmployee" Association="HumanResourceManagementSystemModel.Store.FK_DepartmentEmployee">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leave_Employee" Association="HumanResourceManagementSystemModel.Store.FK_Leave_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Leave" EntitySet="Leave" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Salary_Employee" Association="HumanResourceManagementSystemModel.Store.FK_Salary_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Salary" EntitySet="Salary" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="AttendanceId" />
+    </Key>
+    <Property Name="AttendanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="Status" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="WorkDetail" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="EmployeeId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="DepartmentDescription" Type="varchar" Nullable="true" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="DateOFBirth" Type="datetime" Nullable="true" />
+    <Property Name="Gender" Type="nvarchar" Nullable="true" MaxLength="30" />
+    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Mobile" Type="nvarchar" Nullable="true" MaxLength="15" />
+    <Property Name="DepartmentId" Type="bigint" Nullable="false" />
+    <Property Name="username" Type="nvarchar" Nullable="true" MaxLength="500" />
+    <Property Name="EmpSalary" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="75" />
+    <Property Name="StartTime" Type="datetime" Nullable="true" />
+    <Property Name="EndTime" Type="datetime" Nullable="true" />
+    <Property Name="Description" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Leave">
+    <Key>
+      <PropertyRef Name="LeaveId" />
+    </Key>
+    <Property Name="LeaveId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="Description" Type="varchar(max)" Nullable="true" />
+    <Property Name="EmployeeId" Type="bigint" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Notice">
+    <Key>
+      <PropertyRef Name="NoticeId" />
+    </Key>
+    <Property Name="NoticeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="75" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="Time" Type="time" Nullable="true" Precision="7" />
+    <Property Name="Description" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Salary">
+    <Key>
+      <PropertyRef Name="SalaryId" />
+    </Key>
+    <Property Name="SalaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="RemaningSalary" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="EmployeeId" Type="bigint" Nullable="false" />
+    <Property Name="TotalSalary" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Attendance_Employee">
+    <End Role="Employee" Type="HumanResourceManagementSystemModel.Store.Employee" Multiplicity="1" />
+    <End Role="Attendance" Type="HumanResourceManagementSystemModel.Store.Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentEmployee">
+    <End Role="Department" Type="HumanResourceManagementSystemModel.Store.Department" Multiplicity="1" />
+    <End Role="Employee" Type="HumanResourceManagementSystemModel.Store.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leave_Employee">
+    <End Role="Employee" Type="HumanResourceManagementSystemModel.Store.Employee" Multiplicity="1" />
+    <End Role="Leave" Type="HumanResourceManagementSystemModel.Store.Leave" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Leave">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Salary_Employee">
+    <End Role="Employee" Type="HumanResourceManagementSystemModel.Store.Employee" Multiplicity="1" />
+    <End Role="Salary" Type="HumanResourceManagementSystemModel.Store.Salary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Salary">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

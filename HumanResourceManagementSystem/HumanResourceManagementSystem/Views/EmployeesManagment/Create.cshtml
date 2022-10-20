@@ -1,0 +1,191 @@
+﻿@model HumanResourceManagementSystem.Models.Employee
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/css/editform.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/EmployeesManagment/Index" style="color:darkblue">Employees</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add-Employee</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="form-block">
+        <h2> Adding Employee Information</h2>
+        @using (Html.BeginForm("Create", "EmployeesManagment", FormMethod.Post, new { name = "Eployeeadding", id = "Eployeeadding" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <section>
+                <div class="container">
+                    <div class="contacts12-main">
+                        <!-- ....................... form ...................-->
+                        <form action="" method="post" class="form">
+                            <div class="main-input">
+
+                                <div>
+                                    @Html.LabelFor(model => model.username, "UniqueID", new { @class = "control-label col-md-2" })
+                                    @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "contact-input", @readOnly = "readOnly" } })
+                                    @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="text" name="FirstName" id="Name" onkeyup="myFunction()" placeholder="Enter First Name" class="contact-input" data-val="true"
+                                           data-val-required="First Name is Blank" data-val-regex-pattern="^[a-zA-Z ]{2,30}$" data-val-regex="Please Enter Valid Name" data-val-minlength-min="3" data-val-minlength="Frist Name is Too Small" data-val-maxlength-max="20" data-val-maxlength="Frist Name is Too Large" />
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="input-icon position-relative">
+                                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="text" name="LastName" id="LName" placeholder="Enter Last Name"
+                                           onkeyup="uperFunction()" class="contact-input" data-val="true"
+                                           data-val-required=" Last Name is Blank" data-val-regex-pattern="^[a-zA-Z ]{2,30}$" data-val-regex="Please Enter Valid Name" data-val-minlength-min="3" data-val-minlength="Last Name is Too Small" data-val-maxlength-max="20" data-val-maxlength="Last Name is Too Large" />
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                            <div class="main-input">
+                                <div>
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="password" name="Password" id="Password" onchange="UserCheck()" placeholder="Enter Password" class="contact-input" data-val="true" data-val-required=" Password Field is Blank"
+                                           data-val-regex-pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$" data-val-regex=" Minimum 8 character & one special character" data-val-maxlength-max="15" data-val-maxlength="Password Length is Max 15 or equal" />
+                                    @*<span class="input-group-addon"><img id="Showbtn" src="~/images/showpassicon.png" /></span>*@
+                                    <p id="Status"></p>
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div>
+                                    @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="tel" name="Mobile" id="Mobile" placeholder="Enter Mobile Number" onchange="Check()" class="contact-input" data-val="true" data-val-required=" Contact Field is Blank"
+                                           data-val-regex-pattern="^(\+92|0|92)[0-9]{10}$" data-val-regex="Please use Valid pattren(+92/03)" />
+                                    <p id="CheckMobile"></p>
+                                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.DateOFBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="date" name="DateOFBirth" id="datecheck" placeholder="" class="contact-input" min="1997-10-07" max="2004-10-07" value="2004-10-07" 
+                                           data-val="true" data-val-required="Data of birth is Blank" />
+                                    
+                                    @Html.ValidationMessageFor(model => model.DateOFBirth, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="main-input2">
+
+                                <div>
+                                    @Html.LabelFor(model => model.DepartmentId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.DropDownList("DepartmentId", null, "...Department Name...", new { @class = "contact-input", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.EmpSalary, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <input type="number" name="EmpSalary" id="EmpSalary" placeholder="Total Salary" class="contact-input" data-val="true" data-val-required="Salary is  Blank" value="false" min="0" max="500000" />
+                                    @Html.ValidationMessageFor(model => model.EmpSalary, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    <label style="font-size:14px medium; font-weight:600;">Male  : </label>
+                                    @Html.RadioButtonFor(m => m.Gender, "Male")&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label style="font-size:14px medium; font-weight:600;">Female :</label>
+                                    @Html.RadioButtonFor(m => m.Gender, "Female")
+                                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <textarea class="contact-textarea" name="Address" id="Address"
+                                      placeholder="Type Address here" data-val="true" data-val-required="Street Adress is Blank" data-val-regex-pattern="^[#.0-9a-zA-Z\s,-]+$" data-val-regex="Please use this pattren(#1, North Street, Chennai - 11) " data-val-minlength-min="20" data-val-minlength="Street Adress is MiniMum 20"
+                                      data-val-maxlength-max="100" data-val-maxlength="Street Adress is Too Large"></textarea>
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" id="AddEmployee" value="Add Employee" class="btn btn-default" />
+                                    <i class="fa fa-arrow-circle-o-left">&nbsp;@Html.ActionLink("Back to List", "Index")</i>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- //............. form ...................-->
+                    </div>
+                </div>
+            </section>
+        }
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    $('#DateOFBirth').datepicker({
+        endDate: '-18y'
+    });
+</script>
+
+<!--- ..........................uper function  in Name ................-->
+<script>
+    function myFunction() {
+        var x = document.getElementById("Name");
+        x.value = x.value.toUpperCase();
+    }
+</script>
+<script>
+    function uperFunction() {
+        var x = document.getElementById("LName");
+        x.value = x.value.toUpperCase();
+    }
+</script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/js/Show.js"></script>
+
+
+<!-- //............. Password Already Exist ...................-->
+<script>
+        function UserCheck() {
+            $("#Status").html("Checking.........!");
+            $.post("@Url.Action("Checkexist", "EmployeesManagment")",
+                {
+                    userdata: $("#Password").val()
+                },
+                function (data) {
+
+                    if (data == 0) {
+                        $("#Status").html('<font color="Green"> Password Available......!</font>');
+                        $("#Password").css("border-color", "Green");
+                    }
+                    else {
+                        $("#Status").html('<font color="Red"> That Password already taken......!</font>');
+                        $("#Password").css("border-color", "Red");
+                    }
+                });
+        }
+</script>
+<!-- //............. Mobile Already Exist ...................-->
+<script>
+        function Check() {
+            $("#CheckMobile").html("Checking.........!");
+            $.post("@Url.Action("Exsitinput", "EmployeesManagment")",
+                {
+                    mobiledata: $("#Mobile").val()
+                },
+                function (data) {
+                    if (data == 0) {
+                        $("#CheckMobile").html('<font color="Green"> Mobile Number Available......!</font>');
+                        $("#Mobile").css("border-color", "Green");
+                    }
+                    else {
+                        $("#CheckMobile").html('<font color="Red"> That Mobile Number already taken......!</font>');
+                        $("#Mobile").css("border-color", "Red");
+                    }
+                });
+        }
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@section Validation {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

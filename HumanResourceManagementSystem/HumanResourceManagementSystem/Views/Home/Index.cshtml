@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    var institute = "";
+    if (TempData.ContainsKey("institute"))
+    {
+        institute = TempData["institute"] as string;
+    }
+}
+<div style="padding:0px">
+
+    <section id="hero-no-slider" class="d-flex justify-cntent-center align-items-center">
+        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <h2>Welcome to @institute</h2>
+                    <p>
+                        Alfa Origin Is US Based Software Company Headquater is In Brooklyn NewYork.
+                        It's primary areas of business is Software development projects with multiple international firms.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </section><!-- End Hero No Slider Sectio -->
+    <div style=" padding-top:70px;padding-bottom:70px">
+        <section class="services">
+            <div class="container">
+                <h1 class="services" style="text-align:center; color:Black "> Our Services</h1>
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                        <div class="icon-box icon-box-pink">
+                            <div class="icon"><i class="fa fa-dribbble"></i></div>
+                            <h4 class="title"><a href="">Software Development</a></h4>
+                            <p class="description">Software development refers to the design, documentation, programming, testing, and ongoing maintenance of a software deliverable.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box icon-box-cyan">
+                            <div class="icon"><i class="fa fa-file"></i></div>
+                            <h4 class="title"><a href="">Web Design</a></h4>
+                            <p class="description">Web design refers to the design of websites that are displayed on the internet.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-box icon-box-green">
+                            <div class="icon"><i class="fa fa-tachometer"></i></div>
+                            <h4 class="title"><a href="">Web Develpping</a></h4>
+                            <p class="description">Web developers create and maintain websites. They are also responsible for the site's technical aspects, such as its performance and capacity</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-box icon-box-blue">
+                            <div class="icon"><i class="fa fa-edge"></i></div>
+                            <h4 class="title"><a href="">Product Management</a></h4>
+                            <p class="description">Product management is an organizational function that guides every step of a product's lifecycle</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Services Section -->
+        <!-- ======= Features Section ======= -->
+        <section class="features">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Features</h2>
+                    <p>The most important part to any website is content. Without content, your website is nothing more than an advertisement, which is not an effective online marketing strategy. The goal of any marketing professional that designs websites should always be to create an online resource for people.</p>
+                </div>
+
+                <div class="row" data-aos="fade-up">
+                    <div class="col-md-5">
+                        <img src="~/images/features-1.svg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-md-7 pt-4">
+                        <h3>What makes a website unique?</h3>
+                        <p class="fst-italic">
+                            It should provide relevant and meaningful information to the users searching for associated information.
+                        </p>
+                        <ul>
+                            <li><i class="fa fa-check"></i> Make the address broad to facilitate future growth.</li>
+                            <li><i class="fa fa-check"></i> Use the proper domain extension.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row" data-aos="fade-up">
+                    <div class="col-md-5 order-1 order-md-2">
+                        <img src="~/images/features-1.svg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-md-7 pt-5 order-2 order-md-1">
+                        <h3>What is a good website?</h3>
+                        <p class="fst-italic">
+                            It should have a clear purpose. It should be visually pleasing and easy to navigate. It should perform well for a wide range of visitors and be technically
+                            stable and secure. Good websites are attractive, functional, and useful.
+                        </p>
+                        @*<p>
+                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                            culpa qui officia deserunt mollit anim id est laborum
+                        </p>*@
+                    </div>
+                </div>
+
+                <div class="row" data-aos="fade-up">
+                    <div class="col-md-5">
+                        <img src="~/images/features-3.svg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-md-7 pt-5">
+                        <h3>What are the features of mobile application development?</h3>
+                        <p>The app should be innovative, informative, easy to navigate. It should focus on interaction and simplicity, be not complicated and include the things that are expected.</p>
+                        <ul>
+                            <li><i class="fa fa-check"></i> Application Framework provides several important classes which are 
+                            used to create an Android application.</li>
+                            <li><i class="fa fa-check "></i> Simplicity for the End-User.</li>
+                            <li><i class="fa fa-check"></i> Applications is the top layer of android architecture.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row" data-aos="fade-up">
+                    <div class="col-md-5 order-1 order-md-2">
+                        <img src="~/images/features-4.svg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-md-7 pt-5 order-2 order-md-1">
+                        <h3>What is the special feature of modern web application?</h3>
+                        <p class="fst-italic">
+                            Modern web applications can dynamically alter their own content without loading a new document.
+                        </p>
+                        <p>
+                            A Web application (Web app) is an application program that is stored on a remote server and delivered over the Internet through a browser interface. Web services 
+                            are Web apps by definition and many, although not all, websites contain Web apps. According to Web
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Features Section -->
+    </div>
+</div>

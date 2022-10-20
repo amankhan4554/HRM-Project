@@ -1,0 +1,57 @@
+﻿@model IEnumerable<HumanResourceManagementSystem.Models.Salary>
+
+@{
+    ViewBag.Title = "SalaryInformation";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+<link href="~/css/employeeindex.css" rel="stylesheet" />
+<div class="main-content p-5">
+    <div class="container-fluid content-top-gap">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Employee/Dashboard" style="color:darkblue">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Salaries-List</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="info">
+        <h2>Salaries Information List</h2>
+        <div style="height: auto; overflow-y: scroll">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Employee.username)
+                    </th>
+                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.RemaningSalary)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee.username)
+                        </td>
+                       
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RemaningSalary)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+</div>
+</div>
+</div>

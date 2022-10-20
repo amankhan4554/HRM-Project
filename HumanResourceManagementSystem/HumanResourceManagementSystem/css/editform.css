@@ -1,0 +1,250 @@
+﻿body {
+    background-color: #EEEEEE;
+    font-family: 'Ubuntu', sans-serif;
+}
+.form-block {
+    background-color: #ffff;
+    padding-bottom: 20px;
+    border-radius: 20px;
+}
+h2 {
+    background-color: #4755AB;
+    border-radius: 20px 20px 0px 0px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    padding-top: 40px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+h4 {
+    padding-left: 30px;
+    padding-top: 40px;
+    color: #000000;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.col-md-2 {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.col-md-10:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+.col-md-10 {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.btn-default {
+    background-color: #4755AB;
+    padding: 5px 30px 5px 30px;
+    border-radius: 30px 30px;
+    margin-top: 5px;
+    
+    margin-left: 40%;
+    color: white;
+}
+
+.fa-arrow-circle-o-left {
+    background-color: #4755ab;
+    padding: 11px 30px 11px 30px;
+    border-radius: 30px 30px;
+    color: white;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 2%;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+}
+
+a {
+    color: white;
+}
+
+
+    a:hover {
+        color: black;
+    }
+
+a {
+    text-decoration: none;
+}
+label {
+    margin-left: 2px;
+    margin-bottom: 10px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.backlink {
+    /*margin-top: 20px;*/
+    margin-left: 40%;
+    padding-bottom: 20px;
+    color: #4755AB;
+}
+
+
+                                  /*... ............form..............*/
+
+
+.contact-form {
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+
+.half-row{
+    width:50%;
+}
+
+@media (max-width: 1024px) {
+    .grid-column-2 {
+        grid-gap: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .grid-column-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .map iframe {
+        height: 400px;
+    }
+
+    .head-main {
+        max-width: 100%;
+    }
+
+    .contact-main {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .column {
+        padding: 0;
+    }
+
+    .map iframe {
+        height: 250px;
+    }
+}
+
+.contact-input,
+.contact-textarea {
+    outline: none;
+    border: none;
+    padding: 15px 25px;
+    font-size: 16px;
+    line-height: 25px;
+    box-sizing: border-box;
+    box-shadow: #4755AB 5px 5px;
+    width: 100%;
+    border: 1px solid #4755AB;
+    height: inherit;
+    border-radius: 0;
+    background: #eee;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+    .contact-input:focus,
+    .contact-textarea:focus {
+        border: 2px solid #4755ab;
+    }
+
+.contact-textarea {
+    min-height: 170px;
+    resize: none;
+}
+
+
+.main-input {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 15px;
+}
+.main-input2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+}
+
+.line {
+    box-sizing: border-box;
+    border: 1px solid #4755ab;
+    opacity: 0.35;
+}
+
+@media all and (max-width: 1400px) {
+    .contacts12-main {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact-input1 {
+        margin-right: 0px;
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    .contact-input2,
+    .contact-textarea {
+        width: 100%;
+    }
+
+    .contact-para {
+        max-width: 100%;
+    }
+
+    .main-input {
+        grid-template-columns: 1fr;
+        grid-gap: 0;
+    }
+
+    button.btn-contact {
+        margin: 0px auto 0;
+    }
+
+    .contact-input,
+    .contact-textarea {
+        margin-bottom: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main-input {
+        grid-template-columns: 1fr;
+        grid-gap: 0px;
+    }
+
+    .contacts-12 .contact-input {
+        margin-top: 15px;
+    }
+}
+
+.btn-primary {
+    background: #4755ab;
+    color: white;
+}
+
+    .btn-primary:hover {
+        color: black;
+        border-radius: 20px;
+    }
+@media all and (max-width: 1400px) {
+    .contacts12-main {
+        max-width: 100%;
+    }
+}
+
+

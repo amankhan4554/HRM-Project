@@ -1,0 +1,448 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataTables.MVC.Control</name>
+    </assembly>
+    <members>
+        <member name="T:DataTables.MVC.Control.ActionResults.AjaxDataTableResult`1">
+            <summary>
+            The generic class <c>AjaxDataTableResult</c> inherits from <c>JsonResult</c>. 
+            It creates a Json object that corresponds to the Json requirements of the datatables.net plugin.
+            </summary>
+            <typeparam name="T">Type of the data used for the datatable.</typeparam>
+        </member>
+        <member name="M:DataTables.MVC.Control.ActionResults.AjaxDataTableResult`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            To be used for data tables with client side processing.
+            </summary>
+            <param name="data">An Enumerable with the records to be shown in the data table.
+            With client side processing the Enumerable must contain all records of all pages, unfiltered and can be unsorted.</param>
+        </member>
+        <member name="M:DataTables.MVC.Control.ActionResults.AjaxDataTableResult`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            To be used for data tables with server side processing.
+            </summary>
+            <param name="data">An Enumerable with the records to be shown in the data table.
+            With server side processing the Enumerable must contain only records of the page to display, filtered and sorted accordingly.</param>
+            <param name="draw">An integer value that counts the number of requests. This means that every time you page, sort, etc., this value is increased by one. It can be taken from the 
+            <see cref="T:DataTables.MVC.Control.Models.AjaxDataTableRequestModel"/>.</param>
+            <param name="recordsTotal">The total number of records that the data source would deliver without filtering.</param>
+            <param name="recordsFiltered">The number of records that the data source provides after filtering.</param>
+        </member>
+        <member name="T:DataTables.MVC.Control.AjaxDataTableHelper">
+            <summary>
+            Html helper to create data tables wich load their data via ajax
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.AjaxDataTableHelper.AjaxDataTable``1(System.Web.Mvc.HtmlHelper,DataTables.MVC.Control.Models.TableConfiguration,System.Object)">
+            <summary>
+            An extension method to create a data table which loads the data via ajax
+            </summary>
+            <typeparam name="TModel">The data type of the data shown in the table.</typeparam>
+            <param name="htmlHelper">A reference to the html helper</param>
+            <param name="config"><see cref="T:DataTables.MVC.Control.Models.TableConfiguration"/></param>
+            <param name="htmlAttributes">Html attributes for the out table tag.</param>
+            <returns><see cref="T:DataTables.MVC.Control.Infrastructure.TableBuilder`1"/></returns>
+        </member>
+        <member name="M:DataTables.MVC.Control.AjaxDataTableHelper.AjaxDataTable``1(System.Web.Mvc.HtmlHelper,System.String,System.Object)">
+            <summary>
+            An extension method to create a data table which loads the data via ajax
+            </summary>
+            <typeparam name="TModel">The data type of the data shown in the table.</typeparam>
+            <param name="htmlHelper">A reference to the html helper</param>
+            <param name="readUrl">The url to read the data.</param>
+            <param name="htmlAttributes">Html attributes for the out table tag.</param>
+            <returns><see cref="T:DataTables.MVC.Control.Infrastructure.TableBuilder`1"/></returns>
+        </member>
+        <member name="M:DataTables.MVC.Control.AjaxDataTableHelper.AjaxDataTable``1(System.Web.Mvc.HtmlHelper,DataTables.MVC.Control.Models.TableConfiguration)">
+            <summary>
+            <see cref="M:DataTables.MVC.Control.AjaxDataTableHelper.AjaxDataTable``1(System.Web.Mvc.HtmlHelper,DataTables.MVC.Control.Models.TableConfiguration,System.Object)"/>
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.AjaxDataTableHelper.AjaxDataTable``1(System.Web.Mvc.HtmlHelper,System.String)">
+            <summary>
+            <see cref="M:DataTables.MVC.Control.AjaxDataTableHelper.AjaxDataTable``1(System.Web.Mvc.HtmlHelper,System.String,System.Object)"/>
+            </summary>
+        </member>
+        <member name="T:DataTables.MVC.Control.Infrastructure.ColumnBuilder">
+            <summary>
+            Creates the Html code for a single column of a data table.
+            </summary>
+        </member>
+        <member name="T:DataTables.MVC.Control.Infrastructure.TableBuilder`1">
+            <summary>
+            Creates the html code and scripts for the data table. Provides methods to add columns to the table and render the html.
+            </summary>
+            <typeparam name="TModel">The type of the data model the tablle is built of.</typeparam>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.LinkColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.LinkConfiguration)">
+            <summary>
+            <see cref="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.LinkColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration,DataTables.MVC.Control.Models.LinkConfiguration)"/>
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.LinkColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration,DataTables.MVC.Control.Models.LinkConfiguration)">
+            <summary>
+            Adds a link column to the data table.
+            </summary>
+            <typeparam name="TProperty">The data property of the model.</typeparam>
+            <param name="expression">An expression to identify the column value.</param>
+            <param name="configuration"><see cref="T:DataTables.MVC.Control.Models.ColumnConfiguration"/></param>
+            <param name="linkConfiguration"><see cref="T:DataTables.MVC.Control.Models.LinkConfiguration"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.DateTimeColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.DateTimeConfiguration)">
+            <summary>
+            <see cref="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.DateTimeColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration,DataTables.MVC.Control.Models.DateTimeConfiguration)"/>
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.DateTimeColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration,DataTables.MVC.Control.Models.DateTimeConfiguration)">
+            <summary>
+            Adds a link column to the data table.
+            </summary>
+            <typeparam name="TProperty">The data property of the model.</typeparam>
+            <param name="expression">An expression to identify the column value.</param>
+            <param name="configuration"><see cref="T:DataTables.MVC.Control.Models.ColumnConfiguration"/></param>
+            <param name="dateTimeConfiguration"><see cref="T:DataTables.MVC.Control.Models.DateTimeConfiguration"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.NumericColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            <see cref="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.NumericColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration,DataTables.MVC.Control.Models.NumericConfiguration)"/>
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.NumericColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration)">
+            <summary>
+            <see cref="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.NumericColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration,DataTables.MVC.Control.Models.NumericConfiguration)"/>
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.NumericColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.NumericConfiguration)">
+            <summary>
+            <see cref="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.NumericColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration,DataTables.MVC.Control.Models.NumericConfiguration)"/>
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.NumericColumn``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration,DataTables.MVC.Control.Models.NumericConfiguration)">
+            <summary>
+            Adds a link column to the data table.
+            </summary>
+            <typeparam name="TProperty">The data property of the model.</typeparam>
+            <param name="expression">An expression to identify the column value.</param>
+            <param name="configuration"><see cref="T:DataTables.MVC.Control.Models.ColumnConfiguration"/></param>
+            <param name="numericConfiguration"><see cref="T:DataTables.MVC.Control.Models.NumericConfiguration"/> </param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.Column``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.String)">
+            <summary>
+            <see cref="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.Column``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.Column``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},DataTables.MVC.Control.Models.ColumnConfiguration,System.String)">
+            <summary>
+            Adds a simple text column to the data table.
+            </summary>
+            <typeparam name="TProperty">The data property of the model.</typeparam>
+            <param name="expression">An expression to identify the column value.</param>
+            <param name="configuration"><see cref="T:DataTables.MVC.Control.Models.ColumnConfiguration"/></param>
+            <param name="renderFunction">The name of a JavaScript function that controls the output of the value. If no function is specified, the value is simply output as a string. If a name is given, only the name needs to be 
+            given, without parentheses.The fragment "(data, type, row, meta)" is always appended to the name, so that these four parameters are available in the JavaScript function.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTables.MVC.Control.Infrastructure.TableBuilder`1.Render(System.Boolean)">
+            <summary>
+            Redenders the data table.
+            </summary>
+            <param name="withScript">If set to false, no javascript will be created (optional).</param>
+            <returns></returns>
+        </member>
+        <member name="T:DataTables.MVC.Control.Models.AjaxDataTableRequestModel">
+            <summary>
+            Represents an ajax request from the data table to the server if the parameter <c>ServerSide = true</c> 
+            is in the <see cref="T:DataTables.MVC.Control.Models.TableConfiguration"/>.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.AjaxDataTableRequestModel.Draw">
+            <summary>
+            An integer value that counts the number of requests. I. e., each time you page, sort, etc., this value is increased by one. 
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.AjaxDataTableRequestModel.Start">
+            <summary>
+            The zero-based index of the first record to return.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.AjaxDataTableRequestModel.Length">
+            <summary>
+            The number of records to return.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.AjaxDataTableRequestModel.SearchValue">
+            <summary>
+            The search term for which the data should be searched.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.AjaxDataTableRequestModel.SearchColumns">
+            <summary>
+            The names of the columns to search for the search term. The list contains all columns that have the parameter <c>Searchable = true</c>  
+            according to their <see cref="T:DataTables.MVC.Control.Models.ColumnConfiguration"/>.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.AjaxDataTableRequestModel.OrderColumn">
+            <summary>
+            The name of the column by which to sort the result.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.AjaxDataTableRequestModel.OrderDirection">
+            <summary>
+            The sort direction by which the result should be sorted.
+            </summary>
+        </member>
+        <member name="T:DataTables.MVC.Control.Models.ColumnConfiguration">
+            <summary>
+            Contains the configuration for the display and behavior of a column.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.ColumnConfiguration.ClassName">
+            <summary>
+            A name of a CSS clas which is added to the table cells (td tags).
+            (optional)
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.ColumnConfiguration.Orderable">
+            <summary>
+            A parameter that determines whether this column is sortable.
+            Default value: true
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.ColumnConfiguration.Searchable">
+            <summary>
+            A parameter that determines whether this column is searchable.
+            Default value: true
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.ColumnConfiguration.Title">
+            <summary>
+            Sets the column heading. If nothing is specified here, the heading is determined via the display attribute of the property of the model.
+            (optional)
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.ColumnConfiguration.Visible">
+            <summary>
+            A parameter that determines whether this column is visible.
+            Default value: true
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.Models.ColumnConfiguration.ToHtml5Data">
+            <summary>
+            Converts the settings into Html data attributes. This method is only for internal purposes.
+            </summary>
+        </member>
+        <member name="T:DataTables.MVC.Control.Models.NumericConfiguration">
+            <summary>
+            Contains the configuration for the display of a column with numerical values.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.NumericConfiguration.ThousandsSeperator">
+            <summary>
+            Sets the thousands separator.
+            Default value: . (dot)
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.NumericConfiguration.DecimalSign">
+            <summary>
+            Sets the decimal separator.
+            Default value: , (comma)
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.NumericConfiguration.DecimalPlaces">
+            <summary>
+            Specifies the number of decimal places.
+            Default value: 0 (no decimal places)
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.NumericConfiguration.ValueAppendix">
+            <summary>
+            A value that is inserted after the actual data value (e.g. a currency symbol).
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.NumericConfiguration.ValuePrependix">
+            <summary>
+            A value that is inserted before the actual data value (e.g. a currency symbol).
+            </summary>
+        </member>
+        <member name="T:DataTables.MVC.Control.Models.DateTimeConfiguration">
+            <summary>
+            Contains the configuration for the display of a column with date or time values.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.DateTimeConfiguration.DateTimeFormat">
+            <summary>
+            Specifies the date and time format of the column. Note: This entry must be in a format valid for moment.js.
+            </summary>
+        </member>
+        <member name="T:DataTables.MVC.Control.Models.LinkConfiguration">
+            <summary>
+            Contains the configuration for the display and the content of a column with a link.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.LinkConfiguration.InnerHtml">
+            <summary>
+            Specifies the text to be linked. In this text, placeholders in curly brackets can be used to reference values from the data record.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.LinkConfiguration.CssClass">
+            <summary>
+            A Css class name which is added to the link (to the button resp. a tag, optional).
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.LinkConfiguration.Target">
+            <summary>
+            The javascript function or url to be linked. In this text, placeholders in curly brackets can be used to reference values from the data record.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.LinkConfiguration.LinkType">
+            <summary>
+            A parameter that determines whether the link should be a script or a url.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.LinkConfiguration.TagType">
+            <summary>
+            A parameter that determines whether the link is created as button or a tag.
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.Models.LinkConfiguration.ResolveTarget(System.String)">
+            <summary>
+            Replaces the placeholders in the link (Target). This method is for internal purposes only.
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.Models.LinkConfiguration.ResolveInnerHtml(System.String)">
+            <summary>
+            Replaces the placeholders in the linked text (InnerHtml). This method is for internal purposes only.
+            </summary>
+        </member>
+        <member name="T:DataTables.MVC.Control.Models.TableConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.HasOrdering">
+            <summary>
+            A parameter that determines whether the table is sortable. If false, the column titles are not linked for sorting and no sort direction is displayed.
+            Default value: true
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.HasPaging">
+            <summary>
+            A parameter that determines whether the data is displayed page by page. 
+            Default value: true
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.HasSearching">
+            <summary>
+            A parameter that determines whether the table provides a search field.
+            Default value: true
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.ShowProcessingIndicator">
+            <summary>
+            A parameter that determines whether a hint should be displayed while data is loading. The content of this note can be customized via a language file if necessary.
+            Default value: true
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.HasPageLengthMenu">
+            <summary>
+            A parameter that determines whether to display a drop-down menu for selecting the number of rows displayed.
+            Default value: true
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.ServerSide">
+            <summary>
+            A parameter that determines whether the data should be filtered and sorted on the server side or on the client side. 
+            Default value: false
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.AjaxReadUrl">
+            <summary>
+            The url from which to read the data for the table.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.Order">
+            <summary>
+             With this parameter, the initial sorting of the table is determined. The parameter is of type OrderConfiguration, which contains a column number (zero-based) and
+            a sort order.
+            Default value: [0, Ascending]
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.InitalPageLength">
+            <summary>
+            This parameter determines how many data records are initially displayed on each page.
+            Default value: 10
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.PageLengthMenu">
+            <summary>
+            A parameter that populates the drop down menu values for changing the page length.
+            Default value: [10, 20, 30, 40, 50]
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.LanguageFileUrl">
+            <summary>
+            A url under which a language file for the standard texts of the data table can be loaded. By default, all texts are in English.
+            (optional)
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.ControlDefinition">
+            <summary>
+            A string that defines the order in which the controls (search field, pager, etc.) should be arranged around the table and whether additional div elements should be added.
+            (optional)
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Models.TableConfiguration.DrawCallbackFunction">
+            <summary>
+            The name of a Javascript function that is called after the table has been rendered (draw event).
+            (optional)
+            </summary>
+        </member>
+        <member name="M:DataTables.MVC.Control.Models.TableConfiguration.ToHtml5Data">
+            <summary>
+            Converts the settings into Html data attributes. This method is only for internal purposes.
+            </summary>
+        </member>
+        <member name="T:DataTables.MVC.Control.Resources.Scripts">
+            <summary>
+              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Resources.Scripts.ResourceManager">
+            <summary>
+              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Resources.Scripts.Culture">
+            <summary>
+              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Resources.Scripts.AjaxDataTableInitFunction">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die var initAjaxDataTable = function (tableId, colConfig, cbf) {
+               var languageFile = $(&apos;#&apos; + tableId).data(&quot;languagefile&quot;);
+               var ajaxUrl = $(&apos;#&apos; + tableId).data(&quot;ajaxurl&quot;);
+               var ajaxType = &quot;GET&quot;;
+               if ($(&apos;#&apos; + tableId).data(&quot;server-side&quot;) === true)
+                   ajaxType = &quot;POST&quot;;
+               var dt = $(&apos;#&apos; + tableId).DataTable({
+                   ajax: { &quot;url&quot;: ajaxUrl, &quot;type&quot;: ajaxType },
+                   language: { &quot;url&quot;: languageFile },
+                   columnDefs: colConfig
+               });
+               if (cbf !== undefined) {
+                   dt.on [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+            </summary>
+        </member>
+        <member name="P:DataTables.MVC.Control.Resources.Scripts.AjaxDataTableInitFunction_es5_min">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die &quot;use strict&quot;;var initAjaxDataTable=function(n,t,i){var f=$(&quot;#&quot;+n).data(&quot;languagefile&quot;),e=$(&quot;#&quot;+n).data(&quot;ajaxurl&quot;),r=&quot;GET&quot;,u;if($(&quot;#&quot;+n).data(&quot;server-side&quot;)===!0&amp;&amp;(r=&quot;POST&quot;),u=$(&quot;#&quot;+n).DataTable({ajax:{url:e,type:r},language:{url:f},columnDefs:t}),i!==undefined)u.on(&quot;draw&quot;,i)}; ähnelt.
+            </summary>
+        </member>
+    </members>
+</doc>

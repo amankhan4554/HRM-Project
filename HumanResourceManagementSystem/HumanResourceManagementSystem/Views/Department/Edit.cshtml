@@ -1,0 +1,56 @@
+﻿@model HumanResourceManagementSystem.Models.Department
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/css/editform.css" rel="stylesheet" />
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Department/Index" style="color:darkblue">Department</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit-Department</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="form-block">
+        <h2>Edit Department Information</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="container">
+                <div class="contacts12-main">
+                    <div>
+                        <div>
+                            @Html.LabelFor(model => model.DepartmentName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.DepartmentName, new { htmlAttributes = new { @class = "contact-input", @Required = "Required" } })
+                            @Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.DepartmentDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div>
+                            @Html.EditorFor(model => model.DepartmentDescription, new { htmlAttributes = new { @class = "contact-textarea", @Required = "Required" } })
+                            @Html.ValidationMessageFor(model => model.DepartmentDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                            <i class="fa fa-arrow-circle-o-left">&nbsp; @Html.ActionLink("Back to List", "Index")</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Validation {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HumanResourceManagementSystem.Models.Department>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/css/employeeindex.css" rel="stylesheet" />
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Admin/Dashboard" style="color:darkblue">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Department-List</li>
+            </ol>
+        </nav>
+
+    </div>
+    <div class="info">
+        <h2>Department Information List</h2>
+
+
+        
+        <div style="height: auto; overflow-y: scroll">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DepartmentName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DepartmentDescription)
+                    </th>
+                    <th></th>
+                </tr>
+
+                  @foreach (var item in Model)
+                  {
+                      <tr>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.DepartmentName)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.DepartmentDescription)
+                          </td>
+                          <td>
+                              @Html.ActionLink(".", "Edit", new { id = item.DepartmentId }, new { @class = " fa fa-pencil" })
+                              @Html.ActionLink(".", "Details", new { id = item.DepartmentId }, new { @class = " fa fa-eye" })
+                              @Html.ActionLink(".", "Delete", new { id = item.DepartmentId }, new { @class = " fa fa-trash" })
+                          </td>
+                      </tr>
+                   }
+                 
+            </table>
+        </div>
+    </div>
+    </div>

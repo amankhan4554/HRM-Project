@@ -1,0 +1,73 @@
+﻿@model HumanResourceManagementSystem.Models.Notice
+
+@{
+    ViewBag.Title = "Delete"; 
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/css/deleteemployee.css" rel="stylesheet" />
+<div class="main-content">
+    <div class="container-fluid content-top-gap">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Notice/Index" style="color:darkblue">Notice</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Delete-Notice</li>
+            </ol>
+        </nav>
+
+    </div>
+
+    <div class="dl-horizontal">
+
+        <h2>Delete Notice</h2>
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Notice</h4>
+            <hr />
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Subject)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Date)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Time)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Time)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+            <i class="fa fa-arrow-circle-o-left">&nbsp;@Html.ActionLink("Back to List", "Index")</i>
+        </div>
+            }
+        </div>
+    </div>
+</div>
